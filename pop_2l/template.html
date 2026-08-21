@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<style>
+  /* ==============================
+     2L判（127mm × 178mm）縦
+     ============================== */
+  @page { size: 127mm 178mm; margin: 0; }
+  html, body { margin: 0; padding: 0; }
+  body {
+    width: 127mm; height: 178mm;
+    background: #faf7f0;               /* 生成り色の下地 */
+    font-family: "Noto Serif JP", serif;
+    color: #2b2721;
+    position: relative;
+    overflow: hidden;
+    -webkit-print-color-adjust: exact;
+  }
+
+  /* 細い飾り枠 */
+  .frame {
+    position: absolute;
+    top: 5mm; left: 5mm; right: 5mm; bottom: 5mm;
+    border: 0.4mm solid #a89b82;
+  }
+  .frame::after {
+    content: "";
+    position: absolute;
+    top: 1.2mm; left: 1.2mm; right: 1.2mm; bottom: 1.2mm;
+    border: 0.15mm solid #a89b82;
+  }
+
+  /* 右上：小さな見出し（展示名・農園名など） */
+  .header {
+    position: absolute;
+    top: 12mm; right: 12mm;
+    writing-mode: vertical-rl;
+    font-size: 9pt;
+    letter-spacing: 0.35em;
+    color: #7a6f5b;
+  }
+
+  /* 中央：問いかけ（縦書き・メイン） */
+  .copy {
+    position: absolute;
+    top: 14mm; bottom: 42mm;
+    left: 12mm; right: 24mm;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  .copy-inner {
+    writing-mode: vertical-rl;
+    font-size: 17pt;
+    font-weight: 600;
+    line-height: 2.1;
+    letter-spacing: 0.18em;
+    max-height: 100%;
+  }
+
+  /* 添え書き（縦書き・小） */
+  .sub {
+    position: absolute;
+    bottom: 44mm; left: 14mm;
+    writing-mode: vertical-rl;
+    font-size: 8.5pt;
+    letter-spacing: 0.2em;
+    color: #6b6152;
+  }
+
+  /* 下部：品名と値段（横書き） */
+  .foot {
+    position: absolute;
+    left: 12mm; right: 12mm; bottom: 12mm;
+    text-align: center;
+    border-top: 0.15mm solid #a89b82;
+    padding-top: 4mm;
+  }
+  .item-name {
+    font-size: 12pt;
+    letter-spacing: 0.25em;
+    margin-bottom: 2.5mm;
+  }
+  .price {
+    font-size: 15pt;
+    font-weight: 700;
+    letter-spacing: 0.1em;
+  }
+  .price small {
+    font-size: 8.5pt;
+    font-weight: 400;
+    color: #6b6152;
+    margin-left: 1.5mm;
+  }
+</style>
+</head>
+<body>
+  <div class="frame"></div>
+  <div class="header">{{HEADER}}</div>
+  <div class="copy"><div class="copy-inner">{{COPY}}</div></div>
+  <div class="sub">{{SUB}}</div>
+  <div class="foot">
+    <div class="item-name">{{ITEM}}</div>
+    <div class="price">{{PRICE}}<small>（税込）</small></div>
+  </div>
+</body>
+</html>
